@@ -12,7 +12,7 @@ import headTexture from "./assets/textures/head.webp";
 import iconSpritesheet from "./assets/textures/icon-spritesheet.webp";
 import matcapBlack from "./assets/textures/matcap-black.webp";
 import matcapGray from "./assets/textures/matcap-gray.webp";
-import matcapSkin from "./assets/textures/matcap-skin.webp";
+import matcapSkin from "./assets/textures/matcap-afro.webp";
 import matcapWhite from "./assets/textures/matcap-white.webp";
 import numbersBitmap from "./assets/textures/numbers-bitmap.webp";
 import roomTexture from "./assets/textures/room.webp";
