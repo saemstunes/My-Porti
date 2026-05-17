@@ -28,8 +28,8 @@ const logos: ProjectLogo[] = [
     alt: "CEKA Logo",
   },
   {
-    dark: logoNodLight,
-    light: logoNodDark,
+    dark: logoNodDark,
+    light: logoNodLight,
     url: "https://nod.saemstunes.com",
     alt: "NOD Logo",
   },
