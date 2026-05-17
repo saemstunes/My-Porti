@@ -192,14 +192,78 @@ const getInTouchClassNames = computed(() => {
 
     @include mixins.mq("md") {
       display: flex;
-      background-color: var(--color-orange-400, #ff6600) !important;
-      color: var(--color-black, #000) !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      backdrop-filter: blur(12px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2) !important;
+      color: rgba(0, 0, 0, 0.8) !important; // Dark text on light backgrounds
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg, 
+          rgba(0, 0, 0, 0.05) 0%, 
+          rgba(0, 0, 0, 0) 100%
+        );
+        pointer-events: none;
+      }
 
       @include mixins.hover {
         &:hover {
-          background-color: var(--color-black, #000) !important;
-          color: var(--color-orange-400, #ff6600) !important;
+          background: rgba(0, 0, 0, 0.05) !important;
+          border-color: rgba(0, 0, 0, 0.15) !important;
+          transform: translateY(-2px) scale(1.02) !important;
+          box-shadow: 
+            0 8px 24px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+          color: #000 !important;
         }
+
+        &:active {
+          transform: translateY(0) scale(0.98) !important;
+          box-shadow: 
+            0 2px 8px rgba(0, 0, 0, 0.05),
+            inset 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+        }
+      }
+    }
+  }
+
+  &-dark {
+    .header-get-in-touch {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: rgba(255, 255, 255, 0.9) !important; // Light text on dark backgrounds
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      
+      &::before {
+        background: linear-gradient(
+          180deg, 
+          rgba(255, 255, 255, 0.05) 0%, 
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 
+            0 8px 24px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+        color: #fff !important;
       }
     }
   }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import Clickable from "./Clickable.vue";
+import { locale } from "../i18n/store";
 
 import logoCekaDark from "../assets/images/logos/ceka-dark.png";
 import logoNodDark from "../assets/images/logos/nod-dark.png";
@@ -16,33 +17,33 @@ const props = defineProps<{
 interface ProjectLogo {
   dark: string;
   light: string;
-  url: string;
+  slug: string;
   alt: string;
 }
 
 const logos: ProjectLogo[] = [
   {
     dark: logoCekaDark,
-    light: logoCekaDark, // Using filter for light
-    url: "https://civiceducationkenya.com",
+    light: logoCekaDark,
+    slug: "ceka",
     alt: "CEKA Logo",
   },
   {
-    dark: logoNodDark,
-    light: logoNodLight,
-    url: "https://nod.saemstunes.com",
+    dark: logoNodLight, // Black SVG for light backgrounds
+    light: logoNodDark, // White PNG for dark backgrounds
+    slug: "nod",
     alt: "NOD Logo",
   },
   {
     dark: logoSaemstunesDark,
-    light: logoSaemstunesDark, // Using filter for light
-    url: "https://saemstunes.com",
+    light: logoSaemstunesDark,
+    slug: "saemstunes",
     alt: "Saem's Tunes Logo",
   },
   {
     dark: logoNasakaDark,
     light: logoNasakaLight,
-    url: "https://nasaka.civiceducationkenya.com",
+    slug: "nasaka",
     alt: "Nasaka Logo",
   },
 ];
@@ -55,9 +56,9 @@ const currentLogo = computed(() => {
   const logo = logos[currentIndex.value]!;
   return {
     src: props.isDarkTheme ? logo.light : logo.dark,
-    url: logo.url,
+    slug: logo.slug,
     alt: logo.alt,
-    needsFilter: (currentIndex.value === 0 || currentIndex.value === 2) && props.isDarkTheme,
+    needsFilter: currentIndex.value === 0 && props.isDarkTheme,
   };
 });
 
@@ -77,7 +78,9 @@ onBeforeUnmount(() => {
 
 const handleLogoClick = (e: Event) => {
   e.stopPropagation();
-  window.open(currentLogo.value.url, "_blank");
+  // Using absolute link path with locale context
+  const targetPath = `/${locale.value || "en"}/projects/${currentLogo.value.slug}`;
+  window.location.href = targetPath;
 };
 </script>
 

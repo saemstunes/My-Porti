@@ -107,10 +107,12 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
 };
 
 const SERVICES_EN = [
-  { name: "React & TypeScript" },
-  { name: "Supabase & Postgres" },
+  { name: "React, TypeScript, Tailwind CSS" },
+  { name: "Firebase integration, SQL, PostgreSQL" },
+  { name: "GitHub, Git, CLI workflows"},
   { name: "Cloudflare & CDN" },
-  { name: "Capacitor & Android" },
+  { name: "Debugging, build troubleshooting"},
+  { name: "Android Studio, Kotlin, Gradle" },
   { name: "Paystack & M-Pesa" },
 ] as const satisfies { name: string }[];
 
